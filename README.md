@@ -1,5 +1,6 @@
 ﻿# Ngọc Rồng  H5
-
+0. Demo Game
+- You can try : [https://trandoducnghia.github.io/dragonBoyH5/](https://trandoducnghia.github.io/dragonBoyH5/)
 1. Giới thiệu
     
     - Đây là phiên bản Base của Ngọc Rồng Online.
