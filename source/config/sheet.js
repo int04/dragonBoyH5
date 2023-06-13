@@ -38,7 +38,7 @@ export default class Since04SheetImges extends Since04Graphics {
 
             if(sheet) 
             {
-                let src = PIXI.Texture.from('/assets/sheet/'+sheet.t+'', {
+                let src = PIXI.Texture.from('./assets/sheet/'+sheet.t+'', {
                     resourceOptions : {
                         createBitmap : false,
                     }, 
@@ -57,7 +57,7 @@ export default class Since04SheetImges extends Since04Graphics {
         let sheet = this.checkSheet(name);
         if(sheet)
         {
-            let src = PIXI.Texture.from('/assets/char/'+sheet.sheet+'.png', {
+            let src = PIXI.Texture.from('./assets/char/'+sheet.sheet+'.png', {
                 resourceOptions : {
                     createBitmap : false,
                 }, 
