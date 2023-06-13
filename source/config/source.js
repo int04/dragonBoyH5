@@ -74,7 +74,7 @@ export default class source extends Since04SheetImges {
         if(sheet) return sheet;
         
         if(typeof name == 'number') name = name.toString();
-        let src = PIXI.Texture.from('/assets/'+folder+'/'+name+'.png', {
+        let src = PIXI.Texture.from('./assets/'+folder+'/'+name+'.png', {
             resourceOptions : {
                 createBitmap : false,
             }, 
