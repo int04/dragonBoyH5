@@ -1,0 +1,465 @@
+
+<!-------html------->
+
+<html lang="vi">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="theme-color" content="#F2462E">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="full-screen" content="yes">
+<meta name="x5-fullscreen" content="true">
+<meta name="360-fullscreen" content="true">
+
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
+
+<meta name="browsermode" content="application">
+<meta name="x5-page-mode" content="app">
+<meta name="keywords" content="Pokemon X,Pokemon Y,Pokemon Black, Pokemon White,Pokemon RPG,MMORPG, Pokemon MMORPG, Pokemon Online, Pokemon MMO, Pokemon Game, Online Pokemon Game, Pokemon, RPG , pokemon h5">
+<meta name="description" content="Web Game PokeMon MMO Play NOW.">
+<meta property="og:title" content="PokeMon Web Game">
+<meta property="og:description" content="PokeMon Burn - Trò chơi di chuyển tự do phưu lưu cùng bạn bè tổ đội v.v">
+<html itemscope itemtype="http://schema.org/Product">
+<meta itemprop="name" content="PokeMon H5 Online">
+<meta itemprop="description" content="PokeMOn H5- Trò chơi khám phá di chuyển phưu lưu cùng bạn bè online v.v">
+
+
+<script src="
+https://cdn.jsdelivr.net/npm/component-emitter@1.3.0/index.min.js
+"></script>
+<script  src="https://rawgit.com/kawanet/msgpack-lite/master/dist/msgpack.min.js"></script>
+<script type="module">
+  </script>
+
+
+<style>
+   
+    @font-face {
+        font-family:  'chelthm';
+        src: url('/assets/font/unicode.chelthm.ttf');
+    }
+  
+
+    @font-face {
+        font-family:  'PatrickHandSCRegular';
+        src: url('/assets/font/PatrickHandSC-Regular.ttf');
+    }
+
+    @font-face {
+        font-family:  'PottaOne-Regular';
+        src: url('/assets/font/PottaOne-Regular.ttf');
+    }
+    @font-face {
+        font-family:  'fontchinh';
+        src: url('/assets/font/Coiny-Regular.ttf');
+    }
+
+    @font-face {
+        font-family:  'staccato';
+        src: url('/assets/font/staccato.ttf');
+    }
+
+
+
+</style>
+</head>
+
+
+<body>
+        <div id="desktop">
+
+        
+
+          <div id="background"></div>
+
+          <header class="menu-bar">
+            <nav class="menu">
+              <ul>
+                <li><a href="#">File</a></li>
+                <li><a href="#">Edit</a></li>
+                <li><a href="#">View</a></li>
+                <li><a href="#">Window</a></li>
+                <li><a href="#">Help</a></li>
+              </ul>
+            </nav>
+          </header>
+         
+        
+
+          <div class="window" id="window" >
+            <div class="title-bar" id="title_bar">
+              <div class="app-title" style="font-family:  'Arial';">Ngọc Rồng Online</div>
+              <div class="window-buttons">
+                <div class="window-button minimize-button">➖</div>
+
+                <div class="window-button minimize-button">□</div>
+                <div class="window-button close-button">X</div>
+              </div>
+            </div>
+            <div class="window-content" id="game" >
+              
+            </div>
+          </div>
+        </div>
+      
+</body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.msgpack.min.js"></script>
+<script defer  src="/source/CDN/socketv4.js"></script>
+<script defer src="/source/CDN/tween.umd.js"></script>
+<script defer src="/source/CDN/pixi.js"></script>
+<script defer src="/source/CDN/gsap.min.js"></script>
+<script defer   src="/source/CDN/viewport.min.js"></script>
+<script defer type="text/javascript" src="/source/CDN/input.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+<script src="/source/CDN/ghi.js"></script>
+
+
+
+
+
+<script defer  src="/game.js" type="module" ></script>
+
+
+
+
+
+<style>
+     /* Các kiểu dáng chung */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#desktop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  overflow: hidden;
+}
+
+#background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+}
+
+#taskbar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 10px;
+}
+
+.start-button {
+  width: 30px;
+  height: 30px;
+  background-color: #fffafa;
+  margin-right: 10px;
+}
+
+.window {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: 1025px;
+ max-height: 635px;
+ width: 100%;
+ height: 100%;
+  background-color: #fff;
+  border: 0.5px solid #ccc;
+  transform: translate(-50%, -50%);
+
+}
+
+.title-bar {
+  height: 30px;
+  background-color: #ffffff;
+  color: #100808;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  cursor: move;
+
+}
+
+.app-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.window-buttons {
+  display: flex;
+}
+
+.window-button {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  margin-left: 4px;
+  background-color: #ffffff;
+}
+
+.window-content {
+  width: 100%;
+  height: calc(100% - 30px);
+}
+
+
+</style>
+
+
+<script>
+    const windowElement = document.getElementById('title_bar');
+    const windowtab = document.getElementById('window');
+    let isDragging = false;
+    let offset = { x: 0, y: 0 };
+
+    // Xử lý sự kiện khi click chuột xuống
+    windowElement.addEventListener('mousedown', (event) => {
+      isDragging = true;
+      // Tính toán khoảng cách giữa vị trí chuột và vị trí cửa sổ
+      offset.x = event.clientX - windowtab.offsetLeft;
+      offset.y = event.clientY - windowtab.offsetTop;
+
+    });
+
+    // Xử lý sự kiện khi di chuyển chuột
+    window.addEventListener('mousemove', (event) => {
+      if (isDragging) {
+        // Cập nhật vị trí mới cho cửa sổ dựa trên vị trí chuột và khoảng cách đã tính toán
+        windowtab.style.left = event.clientX - offset.x + 'px';
+        windowtab.style.top = event.clientY - offset.y + 'px';
+      }
+    });
+
+    // Xử lý sự kiện khi nhả chuột
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+  </script>
+
+
+
+
+<style>
+   <style>
+
+
+    .menu-bar {
+  background-color: #f5f5f7;
+  height: 22px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: #000;
+  padding: 3px 8px;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.menu ul li a:hover {
+  background-color: #dcdcdc;
+}
+
+.content {
+  padding: 20px;
+}
+
+.dock {
+  width: auto;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dock .dock-container {
+  padding: 3px;
+  width: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: rgba(83, 83, 83, 0.25);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.dock .dock-container .li-bin {
+  margin-left: 20px;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.4);
+  padding: 0px 10px;
+}
+.dock .dock-container .li-1::after {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  content: &quot;&quot;;
+  bottom: 2px;
+}
+.dock .dock-container li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  vertical-align: bottom;
+  transition: 0.2s;
+  transform-origin: 50% 100%;
+}
+.dock .dock-container li:hover {
+  margin: 0px 13px 0px 13px;
+}
+.dock .dock-container li .name {
+  position: absolute;
+  top: -70px;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.9);
+  height: 10px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  visibility: hidden;
+}
+.dock .dock-container li .name::after {
+  content: &quot;&quot;;
+  position: absolute;
+  bottom: -10px;
+  width: 0;
+  height: 0;
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid rgba(0, 0, 0, 0.5);
+}
+.dock .dock-container li .ico {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.2s;
+}
+.dock .dock-container li .ico-bin {
+  width: 94% !important;
+  height: 94% !important;
+  object-fit: cover;
+  transition: 0.2s;
+}
+.dock .dock-container li .ico-bin:hover {
+  margin-left: 10px;
+}
+
+.li-1:hover .name {
+  visibility: visible !important;
+}
+
+.li-2:hover .name {
+  visibility: visible !important;
+}
+
+.li-3:hover .name {
+  visibility: visible !important;
+}
+
+.li-4:hover .name {
+  visibility: visible !important;
+}
+
+.li-5:hover .name {
+  visibility: visible !important;
+}
+
+.li-6:hover .name {
+  visibility: visible !important;
+}
+
+.li-7:hover .name {
+  visibility: visible !important;
+}
+
+.li-8:hover .name {
+  visibility: visible !important;
+}
+
+.li-9:hover .name {
+  visibility: visible !important;
+}
+
+.li-10:hover .name {
+  visibility: visible !important;
+}
+
+.li-11:hover .name {
+  visibility: visible !important;
+}
+
+.li-12:hover .name {
+  visibility: visible !important;
+}
+
+.li-13:hover .name {
+  visibility: visible !important;
+}
+
+.li-14:hover .name {
+  visibility: visible !important;
+}
+
+.li-15:hover .name {
+  visibility: visible !important;
+}
+</style>
+</style>
+</html>
